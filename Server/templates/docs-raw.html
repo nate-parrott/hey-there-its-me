@@ -1,0 +1,22 @@
+<style>
+ol {
+	text-align: left;
+}
+p {
+	word-wrap: break-word;
+}
+li {
+	margin-bottom: 1em;
+}
+.token {
+	background-color: #F5B349;
+}
+</style>
+
+<ol>
+	<li>When you want users of your web app to authenticate, redirect them to <code>hey-there-its.me/login?public_token=<span class='token'>your public token</span>&amp;callback=<span class='token'>full callback url</span></code>.</li>
+	<li>Once they auth, we'll send them back to <code>http(s)://<span class='token'>your callback URL</span>?jwt=<span class='token'>a javascript web token</span></code>.</li>
+	<li><strong>On your server (if you're using server-side code)</strong>, install a JWT library like <a href='https://github.com/progrium/pyjwt/'>PyJWT</a>, <a href='https://www.npmjs.org/package/node-jwt'>node-jwt</a>, <a href='https://github.com/progrium/ruby-jwt'>Ruby-jwt</a>, or one of many others. These libraries take the JWT token content that we passed as a query string argument in the callback, and your secret token, and decode the JSON inside the token, verifying that it came from us (or someone with access to the secret). You'll get a JSON dictionary with a "d" key — inside that is a "uid" key that contains a <strong>unique user id</strong>.</li>
+	<li>The unique user id is something like <code>openid:nate@nateparrott.com</code>. It's an <em>opaque string</em> — you shouldn't try to tear it apart and extract more data. But it's unique to that user's account, so you can use it as the user's ID in your database.</li>
+	<li><strong>If you're using Firebase</strong>, just pass the JWT to <a href='https://www.firebase.com/docs/web/guide/login/custom.html#section-rest-client-authentication'><code>[firebase].authWithCustomToken</code></a>. It's that simple.</li>
+</ol>

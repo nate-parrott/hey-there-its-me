@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>hey-there-its.me — log in however you want</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
+	<style>
+	body, html {
+		margin: 0px;
+		height: 100%;
+		font-family: "HelveticaNeue", "Helvetica Neue", serif;
+		line-height: 1.3;
+	}
+	h1, h2, h3, h4, h5, h6 {
+		text-transform: uppercase;
+		font-weight: normal;
+	}
+	.centered {
+		width: 100%;
+		height: 100%;
+		display: table;
+	}
+	.centered > div {
+		display: table-cell;
+		vertical-align: middle;
+	}
+	.centered > div > div {
+		padding: 20px;
+		max-width: 700px;
+		margin: auto;
+		text-align: center;
+	}
+	a {
+		color: #FC3A51;
+	}
+	</style>
+	{% block head %}
+
+	{% endblock %}
+</head>
+<body>
+{% block body %}
+<div class='centered'>
+	<div>
+		<div>
+			{% block centered %}{% endblock %}
+		</div>
+	</div>
+</div>
+{% endblock %}
+</body>
+</html>

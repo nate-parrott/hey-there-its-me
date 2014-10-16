@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+{% block head %}
+<style>
+#identity {
+	padding-left: 1em;
+	padding-right: 1em;
+	border-bottom: 2px dotted black;
+	background-color: rgba(0,0,0,0.04);
+}
+#identity a {
+	display: inline-block;
+	margin-left: 2em;
+	margin-right: 2em;
+	font-size: small;
+	text-transform: lowercase;
+}
+code {
+	font-family: monospace;
+}
+.token {
+	background-color: #F5B349;
+	padding-left: 6px;
+	padding-right: 6px;
+	border-radius: 3px;
+	border-bottom: 1px dotted gray;
+}
+#flow {
+	padding: 0px;
+}
+#flow li {
+	list-style-type: none;
+	margin: auto;
+	color: black;
+	margin-bottom: 20px;
+	padding: 2em;
+}
+#flow li.fa {
+	margin: 0px;
+	margin-bottom: 20px;
+	padding: 0px;
+}
+#useit {
+	background-color: #F24E4E;
+	padding: 10px;
+	color: white;
+	font-weight: bold;
+	text-decoration: none;
+}
+</style>
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet"/>
+{% endblock %}
+{% block centered %}
+<h1>Hey there, it's 
+<span id='identity'>
+	{% if identity %}
+	{{identity}}
+	{% else %}
+	<a href='{{auth_url}}'>(verify your identity)</a>
+	{% endif %}
+</span>
+</h1>
+
+<ol id='flow'>
+<li style='background-color:#F24E4E'>Passwords are broken. OAuth is lame. Social login is annoying. As a developer, you/I shouldn't have to worry about it. That's what <strong>hey there it's me</strong> is about.</li>
+<li class='fa fa-smile-o'></li>
+<li style='background-color:#F78145'>Redirect your users to <strong>hey there, its me</strong></li>
+<li class='fa fa-arrow-down'></li>
+<li style='background-color:#F2C94E'>They'll prove who they are using <strong>any shared login service they want</strong> (or their email or phone #, coming soon)</li>
+<li class='fa fa-arrow-down'></li>
+<li style='background-color:#A0B046'>We'll send them back to your site with a <strong><a href='http://jwt.io'>Javascript Web Token</a></strong>, and you can use one of the many simple JWT libraries to extract a <strong>unique identifier</strong>, which you'll use as their user ID in your code. There's example apps using AppEngine and Firebase, but you can easily use whatever framework you want.</li>
+<li class='fa fa-arrow-down'></li>
+<li style='background-color:#11644D; color: white'>You give your users the best damn experience ever.</li>
+<li class='fa fa-paper-plane-o'></li>
+</ol>
+<!--<p>Instead of writing your own auth flow, redirect users to <code>hey-there-its.me/login?callback=<span class='token'>callback URL</span>&amp;public_token=<span class='token'>a token we give you</span></code>. Users log in <strong>however they want</strong> (email/password, Twitter, Github, even yahoo!). Then we'll call back to you, at <code><span class='token'>your-callback-url</span>?jwt=<span>a javascript web token</span></code>. You can then use a simple library like <a href='https://github.com/progrium/pyjwt/'>PyJWT</a> or <a href='https://www.npmjs.org/package/node-jwt'>node-jwt</a> to extract a <strong>unique, verified user identitiy</strong>, like <code>nate@nateparrott.com via OpenID</code>, which you can store in your database.</p>-->
+
+<a href='/developer' id='useit'>use it with your app <span class='fa fa-rocket'></span></a>
+<br/>
+<br/>
+<p>Try out the <a href='/static/firebase-example.html'>client-side Firebase demo</a> or <a href='http://hey-there-its-me-example.appspot.com'>server-side AppEngine demo.</a></p>
+<p><a href='/docs'>Read the docs</a></p>
+<p><a href="http://github.com/nate-parrott/hey-there-its-me">Get the code on Github!</a></p>
+<p>Made with <span class='fa fa-wifi'></span> in one day by <a href='http://nateparrott.com'>Nate Parrott</a>.
+
+{% endblock %}

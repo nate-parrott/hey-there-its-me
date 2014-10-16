@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block head %}
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet"/>
+<style>
+h1, h3 {
+	font-weight: bold;
+	text-transform: lowercase;
+}
+#providers a {
+	display: inline-block;
+	padding: 30px;
+	font-size: 2em;
+	color: white;
+	background-color: #111;
+	margin: 20px;
+	text-decoration: none;
+}
+#providers .fa-google {
+	background-color: #4d8ffd;
+}
+#providers .fa-yahoo {
+	background-color: #3000a2;
+}
+#providers .fa-stack-exchange {
+	background-color: #fd7600;
+}
+</style>
+{% endblock %}
+
+{% block centered %}
+
+<h1>Sign in to {{ app }} using whatever service you want.</h1>
+<h3>We won't spam you. We love you <span class='fa fa-heart'></span></h3>
+
+<div id='providers'>
+{% for provider in providers %}
+<a href="{{provider.url}}" class="fa {{provider.font_awesome}}" aria-label="Log in with {{provider.name}}"></a>
+{% endfor %}
+</div>
+
+{% endblock %}
+

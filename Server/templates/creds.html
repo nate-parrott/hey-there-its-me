@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block centered %}
+
+<h1 style='display: inline-block; background-color: #F78145; padding: 10px'>Credentials for {{ display }} <span class='fa fa-key'></span></h1>
+
+<p><strong>Secret token:</strong> {{ keypair.secret_token }}</p>
+
+<p><strong>Public token:</strong> {{ keypair.public_token }}</p>
+
+<p><strong>Allowed domains</strong>: {{ domains }}</p>
+
+<h2 style='display: inline-block; color: white; background-color: #F24E4E; padding: 10px'>Now what? <span class='fa fa-space-shuttle'></span></h2>
+
+{% include "docs-raw.html" %}
+
+{% endblock %}

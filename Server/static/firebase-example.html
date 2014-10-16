@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="https://cdn.firebase.com/js/client/1.1.2/firebase.js"></script>
+	<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+	<style>
+	body {
+		font-family: sans-serif;
+		margin: 2em;
+		color: #111;
+		line-height: 1.2;
+	}
+	</style>
+</head>
+<body>
+
+<h1 id='auth'>Loading...</h1>
+
+<p>
+	<!-- public token comes from http://hey-there-its-me.appspot.com/developer; 
+	Make sure to set the "secret" to a "firebase secret" you generate in your app settings-->
+	<a href='http://hey-there-its-me.appspot.com/login?public_token=3d13a51b01dc4ae7aee8d9855544d555&callback=%2Fstatic%2Ffirebase-example.html'>Log me in</a>
+
+<script>
+
+// for reading query-string args, from http://stackoverflow.com/questions/901115/how-can-i-get-query-string-values-in-javascript
+function getParameterByName(name) {
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+        results = regex.exec(location.search);
+    return (results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "))).split('/')[0];
+}
+
+var firebase = new Firebase("http://glaring-fire-134.firebaseIO.com");
+var token = getParameterByName("jwt");
+if (token) {
+	console.log(token)
+	firebase.authWithCustomToken(token, function(err, payload) {
+		var result = "";
+		if (err) {
+			result = ("Authentication error: "+ err);
+		} else {
+			result = "Hello, " + payload.uid;
+		}
+		document.getElementById('auth').textContent = result;
+	})
+} else {
+		document.getElementById('auth').textContent = "You are not logged in";
+}
+
+</script>
+
+</body>
+</html>

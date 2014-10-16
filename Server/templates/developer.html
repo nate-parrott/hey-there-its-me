@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block head %}
+<style>
+input {
+	appearance: none;
+	-webkit-appearance: none;
+	-ms-appearance: none;
+	-moz-appearance: none;
+	border-radius: 4px;
+	padding: 20px;
+	border: gray;
+	width: 90%;
+	display: block;
+	margin: 20px auto;
+	background-color: #eee;
+}
+input[type=submit] {
+	width: 60%;
+	border: transparent;
+	background-color: #F24E4E;
+	color: white;
+}
+label {
+	text-align: left;
+	font-weight: bold;
+}
+</style>
+{% endblock %}
+{% block centered %}
+
+<h2 style='text-transform: lowercase; font-weight: bold'>Use hey-there-its.me to auth users for your app</h2>
+<p><em style='font-size: small'>what a good idea!</em></p>
+<p><strong>First</strong>, fill out the form below. Ironically, we don't use "developer accounts" so you can fill it out as many times as you mess up, without any extra work.</p>
+<form method='POST'>
+<label>Your app display name</label>
+<input placeholder='My App Name!' name='display'/>
+<label>Domains (hosts) your app might be on</label>
+<input placeholder='google.com gmail.com localhost' name='domains'/>
+<p style='font-size: small'>Separate by spaces. You'll probably want to include localhost stuff will work when you're developing locally. No wildcards, please.</p>
+<label>Specify your own JWT secret? <strong>Optional</strong></label>
+<input placeholder='secret (optional)' name='secret'/>
+<p style='font-size: small'>This is optional. You'll probably only want to use it if you're using a service like Firebase, which accepts JWT tokens but requires that they be signed with your own <a href='https://www.firebase.com/docs/web/guide/login/custom.html'>Firebase secret</a>. Otherwise, we'll generate one for you.</strong>
+<input type='submit'/>
+</form>
+
+{% endblock %}
