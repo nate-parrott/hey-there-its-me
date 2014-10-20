@@ -109,7 +109,6 @@ class LoginHandler(webapp2.RequestHandler):
 		for name, openid_url, font_awesome in [
 					("Google", "https://www.google.com/accounts/o8/id", "fa-google"), 
 					("Yahoo", "yahoo.com", "fa-yahoo"), 
-					("MyOpenID", "myopenid.com", "fa-linux"), 
 					("Stack Exchange", "openid.stackexchange.com", "fa-stack-exchange")]:
 			providers.append({"name": name, "font_awesome": font_awesome, "url": users.create_login_url("/openid_auth_response?" + urllib.urlencode(query_args), federated_identity=openid_url)})
 		template_args = {
